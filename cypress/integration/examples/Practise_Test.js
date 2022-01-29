@@ -57,7 +57,7 @@ describe('First test suite',function()
      cy.get('.cart-preview > .action-block > button').click()
      cy.contains('Place Order').click()
    })
-   it('Handling WebControls',function(){
+   it.skip('Handling WebControls',function(){
        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
        //cy.get('#checkBoxOption1').click()
        cy.get('#checkBoxOption1').check().should('be.checked').and('have.value','option1') //along with assertions
@@ -81,6 +81,28 @@ describe('First test suite',function()
        cy.get('#hide-textbox').click()
        cy.get('#displayed-text').should('not.be.visible')
        cy.get("[value='radio1']").check().should('be.checked')
+    })
+    it('Alert Handling',function(){
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
+        cy.get('#alertbtn').click()
+        cy.get('#confirmbtn').click()
+        cy.on('window:alert',str=>{
+            expect(str).to.equal('Hello , share this practice page and share your knowledge')
+        })
+        cy.on('window:confirm',str=>
+        {
+            //mocha not cypress commands
+            expect(str).to.equal('Hello , Are you sure you want to confirm?')
+        })
+        //opens in another tab 
+        //cy.get('#opentab').click()
+        //to open in the same window
+        cy.get('#opentab').invoke('removeAttr','target').click()
+        cy.url().should('include','rahulshetty')
+        cy.go('back')
+    })
+    it('Handling Web Tables',function(){
+
     })
    
 })
