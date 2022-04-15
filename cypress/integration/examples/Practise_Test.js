@@ -2,6 +2,8 @@
 
 describe('First test suite',function()
 {
+
+    
     it.skip('First test case',function()
     {
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
@@ -82,7 +84,7 @@ describe('First test suite',function()
        cy.get('#displayed-text').should('not.be.visible')
        cy.get("[value='radio1']").check().should('be.checked')
     })
-    it('Alert Handling',function(){
+    it.skip('Alert Handling',function(){
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
         cy.get('#alertbtn').click()
         cy.get('#confirmbtn').click()
@@ -101,8 +103,33 @@ describe('First test suite',function()
         cy.url().should('include','rahulshetty')
         cy.go('back')
     })
-    it('Handling Web Tables',function(){
+    it.skip('Handling Web Tables',function(){
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
+        cy.get('[name="courses"] tr td:nth-child(2)').each(($el,index,$list)=>{
+            const text = $el.text()
+            if(text.includes('Python'))
+            {
+                cy.get("tr td:nth-child(2)").eq(index).next().then(function(price)
+                {
+                 const priceText=   price.text()
+                 expect(priceText).to.equal('25')
+                })
+            }
 
+        })
     })
    
+})
+
+describe('Second Test suite',function(){
+    it('Handling Mouse Hover',function(){
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
+        cy.get('div.mouse-hover-content').invoke('show')
+        cy.contains('Top').click()
+        //Timed out retrying after 4050ms: cy.click() failed because this element is not visible:
+        //Fix this problem, or use {force: true} to disable error checking
+        //cy.contains('Top').click({force: true})
+        cy.url().should('include','top')
+
+    })
 })

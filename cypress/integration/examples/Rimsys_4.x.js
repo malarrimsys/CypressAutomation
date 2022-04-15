@@ -1,11 +1,17 @@
-describe('Test Suite',function ()
+
+import RimsysLoginPage from  "../pageObjects/RimsysLoginPage"; 
+describe('RIM Test Suite',function ()
 { 
-    it('Test case login ',function ()
+    before(function(){
+        cy.fixture('rimsys').then(function(data){
+            this.data=data
+        })
+    })
+    it('Test case:login ',function ()
     {
-        cy.visit('https://intuitivesurgical.dev-rimsys.com/login')
-        cy.get('#username').type('surgical@yopmail.com')
-        cy.get('#password').type('Surgical2@123456')
-        cy.get("button[type='submit']").click()
+       cy.visit(Cypress.env('rimsysurl'))
+       const loginPage = new RimsysLoginPage;
+       loginPage.login()
     })
     it('Test case Tasks', function ()
     {

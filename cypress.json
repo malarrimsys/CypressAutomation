@@ -1,1 +1,10 @@
-{}
+{
+    "defaultCommandTimeout":6000,
+    "pageLoadTimeout" :10000,
+    "env":
+    {
+        "url":"https://rahulshettyacademy.com/angularpractice/",
+        "rimsysurl" :"https://intuitivesurgical.dev-rimsys.com/login"
+    },
+    "projectId": "tm2tfx"
+}

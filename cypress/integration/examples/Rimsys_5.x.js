@@ -13,7 +13,7 @@ describe('Test Suite',function ()
             method : 'POST',
             url : 'https://qa.rimsys.dev/login',
             qs : {
-              redirectTo : 'https://qa.rimsys.dev/redirect/google'
+              redirectTo : 'https://qa.rimsys.dev/redirect/google/set_token'
     
             },
             body : {
